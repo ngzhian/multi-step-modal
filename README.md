@@ -10,7 +10,7 @@ It depends on bootstrap for the modal and jQuery for everything else.
 
 ## Quick start
 ```html
-<form class="modal" id="demo-modal">
+<form class="modal multi-step" id="demo-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -40,8 +40,9 @@ sendEvent = function() {
 ```
 
 Follow these conventions:
-    1. Your modals should have the class `modal` (boostrap requirement)
-    2. Buttons that bring the user to the next step should have class
+
+1. Your modals should have the class `modal multi-step` (boostrap requirement)
+2. Buttons that bring the user to the next step should have class
         `step`, and also the attribute `data-step` set to whichever step
         this button appears on.
         e.g. a button that is on step 1 (brings the user from step 1 to 2)
@@ -49,7 +50,7 @@ Follow these conventions:
         ```
         <button type="button" class="step step-1" data-step="1"></button>
         ```
-    3. Content you want to show at step 1 should have class `step-1`, and so
+3. Content you want to show at step 1 should have class `step-1`, and so
         on.
 
 # How this works
