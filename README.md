@@ -1,0 +1,71 @@
+# Multi-Page Modal
+A library to help you make multi-page modals, such as a multi-page
+registration form.
+
+It depends on bootstrap for the modal and jQuery for everything else.
+
+[Check out the demo](#)
+
+## Quick start
+```
+<form class="modal" id="demo-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title step-1">Step 1</h4>
+                <h4 class="modal-title step-2">Step 2</h4>
+            </div>
+            <div class="modal-body step-1">
+            This is step 1.
+            </div>
+            <div class="modal-body step-2">
+            This is step 2.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default step" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent()">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>
+<button class="btn btn-default" data-toggle="modal" data-target="#demo-modal">Show</button>
+<script src="/path/to/multi-step-modal.js"></script>
+<script>
+sendEvent = function() {
+    $('#demo-modal').trigger('next.m.1');
+}
+</script>
+```
+
+Follow these conventions:
+    1. Your modals should have the class `modal` (boostrap requirement)
+    2. Buttons that bring the user to the next step should have class
+        `step`, and also the attribute `data-step` set to whichever step
+        this button appears on.
+        e.g. a button that is on step 1 (brings the user from step 1 to 2)
+        should be
+        ```
+        <button type="button" class="step step-1" data-step="1"></button>
+        ```
+    3. Content you want to show at step 1 should have class `step-1`, and so
+        on.
+
+# How this works
+There are conventions to follow 
+This depends on bootstrap for modals, which are elements with the class
+`modal`.
+
+For each modal on the page it attaches event listeners to
+    1. the modal
+    2. the buttons in the modal
+The modal and its buttons reac to a events of the form `next.m.x`, where `x`
+corresponds on the step the button is for.
+
+The close button is visible in all steps.
+
+Progress indicators are available, visible in the demo.
+
+# Events based
+Buttons have events bound, and modals also have the same events abount.
+When you want to transit into the next step, trigger the event on either
+a speicifc button or on the modal (which is easier).

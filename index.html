@@ -1,0 +1,98 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style>
+.m-progress-bar {
+    min-height: 1em;
+    background: #c12d2d;
+    width: 5%;
+}
+</style>
+</head>
+<body>
+<form class="modal" id="demo-modal-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title step-1">Step 1</h4>
+                <h4 class="modal-title step-2">Step 2</h4>
+            </div>
+            <div class="modal-body step-1">
+                This is step 1.
+            </div>
+            <div class="modal-body step-2">
+                This is the final step
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default step" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-1', 1)">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>
+<form class="modal" id="demo-modal-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title step-1">Step 1</h4>
+                <h4 class="modal-title step-2">Step 2</h4>
+                <h4 class="modal-title step-3">Final Step</h4>
+                <div class="m-progress">
+                    <div class="m-progress-bar-wrapper">
+                        <div class="m-progress-bar">
+                        </div>
+                    </div>
+                    <div class="m-progress-stats">
+                        <span class="m-progress-current">
+                        </span>
+                        /
+                        <span class="m-progress-total">
+                        </span>
+                    </div>
+                    <div class="m-progress-complete">
+                        Completed
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body step-1">
+                This is step 1.
+            </div>
+            <div class="modal-body step-2">
+                This is the second step.
+            </div>
+            <div class="modal-body step-3">
+                This is the final step.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default step" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent('#demo-modal-2', 1)">Continue</button>
+                <button type="button" class="btn btn-primary step step-2" data-step="2" onclick="sendEvent('#demo-modal-2', 2)">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container">
+    <div class="row">
+        <h1>
+            Simple Multi-step modal
+        </h1>
+        <button class="btn btn-default" data-toggle="modal" data-target="#demo-modal-1">Show</button>
+    </div>
+    <div class="row">
+        <h1>
+            Progress bar and text  Multi-step modal
+        </h1>
+        <button class="btn btn-default" data-toggle="modal" data-target="#demo-modal-2">Show</button>
+    </div>
+</div>
+<script src="multi-step-modal.js"></script>
+<script>
+sendEvent = function(sel, step) {
+    $(sel).trigger('next.m.' + step);
+}
+</script>
+</body>
+</html>
