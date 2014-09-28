@@ -1,10 +1,12 @@
-# Multi-Page Modal
-A library to help you make multi-page modals, such as a multi-page
+# Multi-Step Modal
+A library to help you make multi-step modals, such as a multi-page
 registration form.
 
 It depends on bootstrap for the modal and jQuery for everything else.
 
 [Check out the demo](http://ngzhian.github.io/multi-step-modal/)
+
+![https://raw.githubusercontent.com/ngzhian/multi-step-modal/master/ss.png](Screenshot of Multi-Page Modal in action)
 
 ## Quick start
 ```
