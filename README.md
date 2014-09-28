@@ -4,7 +4,7 @@ registration form.
 
 It depends on bootstrap for the modal and jQuery for everything else.
 
-[Check out the demo](#)
+[Check out the demo](http://ngzhian.github.io/multi-step-modal/)
 
 ## Quick start
 ```
