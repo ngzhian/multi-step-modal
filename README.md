@@ -6,7 +6,7 @@ It depends on bootstrap for the modal and jQuery for everything else.
 
 [Check out the demo](http://ngzhian.github.io/multi-step-modal/)
 
-![https://raw.githubusercontent.com/ngzhian/multi-step-modal/master/ss.png](Screenshot of Multi-Page Modal in action)
+![Screenshot of Multi-Step Modal](https://raw.githubusercontent.com/ngzhian/multi-step-modal/master/ss.png)
 
 ## Quick start
 ```
