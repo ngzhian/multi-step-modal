@@ -11,7 +11,7 @@
 +function($) {
     'use strict';
 
-    var modals = $('.modal');
+    var modals = $('.modal.multi-step');
 
     modals.each(function(idx, modal) {
         var $modal = $(modal);
@@ -60,12 +60,6 @@
             updateProgress(current_step, total_num_steps);
         }
 
-        function setProgressText() {
-            $progress_complete.hide();
-            $progress_current.text(1);
-            $progress_total.text(total_num_steps);
-        }
-
         function bindEventsToModal($modal, last) {
             var i,
                 delegateToButton = function(e) {
@@ -93,7 +87,8 @@
             reset();
             updateProgress(0, total_num_steps);
             $('.step-1').show();
-            setProgressText();
+            $progress_complete.hide();
+            $progress_total.text(total_num_steps);
             bindEventsToModal($modal, total_num_steps);
             bindEventsToButtons($buttons);
             $modal.data({
