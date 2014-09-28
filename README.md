@@ -9,7 +9,7 @@ It depends on bootstrap for the modal and jQuery for everything else.
 ![Screenshot of Multi-Step Modal](https://raw.githubusercontent.com/ngzhian/multi-step-modal/master/ss.png)
 
 ## Quick start
-```
+```html
 <form class="modal" id="demo-modal">
     <div class="modal-dialog">
         <div class="modal-content">
