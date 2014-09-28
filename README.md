@@ -9,6 +9,8 @@ It depends on bootstrap for the modal and jQuery for everything else.
 ![Screenshot of Multi-Step Modal](https://raw.githubusercontent.com/ngzhian/multi-step-modal/master/ss.png)
 
 ## Quick start
+Add the js file at the bottom of the page.
+
 ```html
 <form class="modal multi-step" id="demo-modal">
     <div class="modal-dialog">
