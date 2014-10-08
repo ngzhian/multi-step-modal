@@ -1,13 +1,3 @@
-// designed for multi page modal registration forms
-// each page has a continue button, the last page has a close button
-// each 'continue' button has a class "step", and an attribute 'data-step="x"',
-// where x is the page/step this button is displayed on
-// any content that needs to transition between being hidden and shown
-// must have the appropriate "step-x" class on it
-// events are ('next.m' + for_step)
-// events 'next.m.x' are bound to the modal, when these events are triggered,
-// the respective buttons responsible for these events will react
-// update progress will find progress text and update the class to completed
 +function($) {
     'use strict';
 
@@ -17,80 +7,103 @@
         var $modal = $(modal);
         var $buttons = $modal.find('button.step');
         var total_num_steps = $buttons.length;
+        var $progress = $modal.find('.m-progress');
         var $progress_bar = $modal.find('.m-progress-bar');
         var $progress_stats = $modal.find('.m-progress-stats');
         var $progress_current = $modal.find('.m-progress-current');
         var $progress_total = $modal.find('.m-progress-total');
         var $progress_complete  = $modal.find('.m-progress-complete');
 
-        function getPercentComplete(current_step, total_steps) {
-            return current_step / total_steps * 100 + '%';
+        function reset() {
+            $modal.find('.step').hide();
+            $modal.find('[data-step]').hide();
         }
 
-        function reset() {
-            var i = 1;
-            for (i = 1; i <= total_num_steps; i++) {
-                $('.step-' + i).hide();
-            }
+        function completeSteps() {
+            $progress_stats.hide();
+            $progress_complete.show();
+            $modal.find('.progress-text').animate({
+                top: '-2em'
+            });
+            $modal.find('.complete-indicator').animate({
+                top: '-2em'
+            });
+            $progress_bar.addClass('completed');
+        }
+
+        function getPercentComplete(current_step, total_steps) {
+            return Math.min(current_step / total_steps * 100, 100) + '%';
         }
 
         function updateProgress(current, total) {
             $progress_bar.animate({
-                width: getPercentComplete(current+1, total)
+                width: getPercentComplete(current, total)
             });
-            if (current === total_num_steps) {
-                $progress_stats.hide();
-                $progress_complete.show();
+            if (current - 1 >= total_num_steps) {
+                completeSteps();
             } else {
-                $progress_current.text(current + 1);
+                $progress_current.text(current);
             }
-            var $progress = $('.m-progress');
-            var $progress_step = $progress.find('[data-progress=' + current + ']');
-            $progress_step.addClass('completed');
+
+            $progress.find('[data-progress]').each(function() {
+                var dp = $(this);
+                if (dp.data().progress <= current - 1) {
+                    dp.addClass('completed');
+                } else {
+                    dp.removeClass('completed');
+                }
+            });
         }
 
-        function nextStep(current_step) {
+        function goToStep(step) {
             reset();
-            var to_show = $('.step-' + (current_step + 1));
+            var to_show = $modal.find('.step-' + step);
             if (to_show.length === 0) {
                 // at the last step, nothing else to show
                 return;
             }
             to_show.show();
-            updateProgress(current_step, total_num_steps);
+            var current = parseInt(step, 10);
+            updateProgress(current, total_num_steps);
+            findFirstFocusableInput(to_show).focus();
         }
 
-        function bindEventsToModal($modal, last) {
-            var i,
-                delegateToButton = function(e) {
-                    $modal.find('button[data-step=' + e.data.step + ']')
-                          .trigger('next.m.' + e.data.step);
-                };
-            for (i = 1; i <= last; i++) {
-                $modal.one('next.m.' + i, {step: i}, delegateToButton);
-            }
-        }
-
-        function bindEventsToButtons() {
-            $buttons.each(function() {
-                var $b = $(this);
-                var for_step = parseInt($b.attr('data-step'), 10);
-                if (for_step) {
-                    $b.on('next.m.' + for_step, function() {
-                        nextStep(for_step);
-                    });
+        function findFirstFocusableInput(parent) {
+            var candidates = [parent.find('input'), parent.find('select'),
+                              parent.find('textarea'),parent.find('button')],
+                winner = parent;
+            $.each(candidates, function() {
+                if (this.length > 0) {
+                    winner = this[0];
+                    return false;
                 }
+            });
+            return $(winner);
+        }
+
+        function bindEventsToModal($modal) {
+            var data_steps = [];
+            $('[data-step]').each(function() {
+                var step = $(this).data().step;
+                if (step && $.inArray(step, data_steps) === -1) {
+                    data_steps.push(step);
+                }
+            });
+
+            $.each(data_steps, function(i, v) {
+                $modal.on('next.m.' + v, {step: v}, function(e) {
+                    goToStep(e.data.step);
+                });
             });
         }
 
         function initialize() {
             reset();
-            updateProgress(0, total_num_steps);
-            $('.step-1').show();
+            updateProgress(1, total_num_steps);
+            $modal.find('.step-1').show();
             $progress_complete.hide();
             $progress_total.text(total_num_steps);
             bindEventsToModal($modal, total_num_steps);
-            bindEventsToButtons($buttons);
             $modal.data({
                 total_num_steps: $buttons.length,
             });
