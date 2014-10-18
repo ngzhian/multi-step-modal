@@ -16,18 +16,18 @@ Add the js file at the bottom of the page.
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title step-1">Step 1</h4>
-                <h4 class="modal-title step-2">Step 2</h4>
+                <h4 class="modal-title" data-step="1">Step 1</h4>
+                <h4 class="modal-title" data-step="2">Step 2</h4>
             </div>
-            <div class="modal-body step-1">
+            <div class="modal-body" data-step="1">
             This is step 1.
             </div>
-            <div class="modal-body step-2">
+            <div class="modal-body" data-step="2">
             This is step 2.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default step" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent()">Continue</button>
+                <button type="button" class="btn btn-primary step" data-step="1" onclick="sendEvent()">Continue</button>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@ Follow these conventions:
         e.g. a button that is on step 1 (brings the user from step 1 to 2)
         should be
         ```
-        <button type="button" class="step step-1" data-step="1"></button>
+        <button type="button" class="step" data-step="1"></button>
         ```
 3. Content you want to show at step 1 should have class `step-1`, and so
         on.
