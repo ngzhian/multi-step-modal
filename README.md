@@ -16,18 +16,18 @@ Add the js file at the bottom of the page.
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" data-step="1">Step 1</h4>
-                <h4 class="modal-title" data-step="2">Step 2</h4>
+                <h4 class="modal-title step-1" data-step="1">Step 1</h4>
+                <h4 class="modal-title step-2" data-step="2">Step 2</h4>
             </div>
-            <div class="modal-body" data-step="1">
+            <div class="modal-body step step-1">
             This is step 1.
             </div>
-            <div class="modal-body" data-step="2">
+            <div class="modal-body step step-2">
             This is step 2.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default step" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary step" data-step="1" onclick="sendEvent()">Continue</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary step step-1" data-step="1" onclick="sendEvent()">Continue</button>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ Add the js file at the bottom of the page.
 <script src="/path/to/multi-step-modal.js"></script>
 <script>
 sendEvent = function() {
-    $('#demo-modal').trigger('next.m.1');
+    $('#demo-modal').trigger('next.m.2');
 }
 </script>
 ```
@@ -64,7 +64,7 @@ For each modal on the page it attaches event listeners to
     1. the modal
     2. the buttons in the modal
 The modal and its buttons reac to a events of the form `next.m.x`, where `x`
-corresponds on the step the button is for.
+corresponds on the step the button show trigger the visibility of.
 
 The close button is visible in all steps.
 
