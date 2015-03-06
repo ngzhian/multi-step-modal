@@ -74,3 +74,6 @@ Progress indicators are available, visible in the demo.
 Buttons have events bound, and modals also have the same events abount.
 When you want to transit into the next step, trigger the event on either
 a speicifc button or on the modal (which is easier).
+
+# License
+MIT
