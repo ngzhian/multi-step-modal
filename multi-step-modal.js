@@ -13,7 +13,7 @@
         var $progress_current = $modal.find('.m-progress-current');
         var $progress_total = $modal.find('.m-progress-total');
         var $progress_complete  = $modal.find('.m-progress-complete');
-        var reset_on_close = ($modal.attr('reset-on-close')=="1" ? true : false);
+        var reset_on_close = ($modal.attr('reset-on-close')==="true" ? true : false);
 
         function reset() {
             $modal.find('.step').hide();
