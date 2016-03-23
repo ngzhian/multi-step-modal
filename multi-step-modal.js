@@ -13,6 +13,7 @@
         var $progress_current = $modal.find('.m-progress-current');
         var $progress_total = $modal.find('.m-progress-total');
         var $progress_complete  = $modal.find('.m-progress-complete');
+        var reset_on_close = $modal.attr('reset-on-close') === 'true';
 
         function reset() {
             $modal.find('.step').hide();
@@ -107,6 +108,18 @@
             $modal.data({
                 total_num_steps: $buttons.length,
             });
+            if (reset_on_close){
+                //Bootstrap 2.3.2
+                $modal.on('hidden', function () {
+                    reset();
+                    $modal.find('.step-1').show();
+                })
+                //Bootstrap 3
+                $modal.on('hidden.bs.modal', function () {
+                    reset();
+                    $modal.find('.step-1').show();
+                })
+            }
         }
 
         initialize();
