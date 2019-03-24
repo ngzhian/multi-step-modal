@@ -92,9 +92,9 @@
             });
 
             $.each(data_steps, function(i, v) {
-                $modal.on('next.m.' + v, {step: v}, function(e) {
-                    goToStep(e.data.step);
-                });
+                window.addEventListener('next.m.' + v, function (evt) {
+                    goToStep(evt.detail.step);
+                }, false);
             });
         }
 
