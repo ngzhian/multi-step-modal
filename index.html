@@ -141,7 +141,8 @@
 <script src="multi-step-modal.js"></script>
 <script>
 sendEvent = function(sel, step) {
-    $(sel).trigger('next.m.' + step);
+    var sel_event = new CustomEvent('next.m.' + step, {detail: {step: step}});
+    window.dispatchEvent(sel_event);
 }
 </script>
 </body>
