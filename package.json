@@ -1,0 +1,31 @@
+{
+  "name": "multi-step-modal",
+  "version": "1.0.0",
+  "description": "A library to help you make multi-step modals, such as a multi-page registration form. It depends on bootstrap for the modal and jQuery for everything else.",
+  "main": "multi-step-modal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngzhian/multi-step-modal.git"
+  },
+  "keywords": [
+    "multi",
+    "step",
+    "modal",
+    "bootstrap",
+    "multistep",
+    "multi-step-modal"
+  ],
+  "author": "Ng Zhi An",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ngzhian/multi-step-modal/issues"
+  },
+  "homepage": "https://github.com/ngzhian/multi-step-modal#readme"
+}
